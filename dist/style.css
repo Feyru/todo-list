@@ -1,0 +1,366 @@
+:root {
+    --primary-color-orange: #FF5403;
+    --secondary-color: #EEEEEE;
+}  
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: relative;
+}
+button, input, textarea {
+    cursor: pointer;
+}
+
+/* HEADER */
+header {
+    background-color: var(--primary-color-orange);
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo {
+    margin-left: 30px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+/* SIDEBAR */
+.sidebar {
+    height: calc(100vh - 60px);
+    grid-column: 1/1;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+.sidebar > h2 {
+    border-bottom: 1px grey solid;
+}
+.add {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    /* margin-top: 20px; */
+    background-color: white;
+    color: grey;
+    border: 2px solid grey;
+}
+.add:hover, .add-project:hover {
+    transform: scale(1.2);
+    transition: .3;
+    color: var(--primary-color-orange);
+    border: 2px solid var(--primary-color-orange);
+}
+.add:active, .add-project:active {
+    color: white;
+    background-color: var(--primary-color-orange);
+}
+.content {
+    height: calc(100vh - 100px);
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+/* PROJECTS */
+.show-all {
+    padding: 5px 10px;
+    border: 1px solid lightgrey;
+    font-size: 1.2em;
+}
+.projects-header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+    border-bottom: 1px solid lightgrey;
+}
+.add-project {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
+    color: grey;
+    border: 1px solid grey;
+}
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid lightgrey;
+}
+.project-delete {
+    background-color: inherit;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+.project:hover, .show-all:hover {
+    border: 1px solid var(--primary-color-orange);
+    transition: .3s;
+    cursor: pointer;
+}
+.project.selected, .show-all.selected {
+    border: none;
+    background-color: var(--primary-color-orange);
+    color: white;
+}
+.project.selected img {
+    filter:invert(100%);
+}
+.project-name {
+    color: grey;
+    font-size: 1.7em;
+    padding: 20px;
+}
+
+/* TODO CARDS */
+
+.todos-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: fit-content;
+    margin-top: 30px;
+}
+.todo {
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+    min-height: 50px;
+    min-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 8fr 3fr 1fr;
+    align-items: center;
+}
+.todo-due-date {
+    justify-self: right;
+    color: var(--primary-color-orange);
+}
+
+.todo:hover, .todo:hover .todo-delete, .check-btn:hover {
+    box-shadow: inset 0 -60px 0 0 lightgrey;
+    transition: .3s;
+}
+
+.completed > .todo-title, .completed > .todo-desc {
+    color: grey;
+    text-decoration: line-through;
+}
+.check-btn {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid black;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    justify-self: center;
+}
+.prio-canwait {
+    border: 2px solid green;
+}
+.prio-important {
+    border: 2px solid orange;
+}
+.prio-urgent {
+    border: 2px solid red;
+}
+.check-btn:hover {
+    font-size: 1.3em;
+    transition: .3;
+}
+.check-btn:checked {
+    background-color: grey;
+    border: 2px solid grey;
+    
+}
+.todo-delete {
+    background-color: inherit;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.5em;
+    font-weight: 900;
+    margin-right: 20px;
+    justify-self: end;
+}
+.todo-delete:hover {
+    font-size: 1.8em;
+    transition: .3;
+}
+.todo-delete:hover img, .project-delete:hover img {
+    transform: scale(1.2);
+    transition: .3;
+}
+/* MODAL - ADD TASK */
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 800px;
+    min-height: 500px;
+    position: absolute;
+    top: 20%;
+    background-color: white;
+    z-index: 2;
+    overflow: hidden;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color-orange);
+    padding: 20px;
+}
+.modal-header-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    color: white;
+    gap: 10px;
+}
+.close, .project-close {
+    background-color: var(--primary-color-orange);
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+.close:hover, .project-close:hover {
+    transform: scale(1.3);
+    transition: .3;
+}
+.modal-top-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+#title, #description {
+    height: 2rem;
+    width: 20rem;
+    padding: 10px;
+    border: 1px solid grey;
+    color: grey;
+    font-size: 1.2em;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+.modal-bottom-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+textarea {
+    min-height: 200px;
+    min-width: 750px;
+    resize: none;
+}
+.modal-bottom-content > :nth-child(1) {
+    font-size: 1.5em;
+}
+input[type="date"] {
+    font-size: 1em;
+    text-align: center;
+    border: 1px solid grey;
+}
+
+.priority-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.priority-container > p { 
+    font-size: 1.5em;
+}
+.priority-container > div {
+    font-size: 1.2em;
+}
+input:checked {
+    color: var(--primary-color-orange);
+}
+.modal-bottom-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.submit, .cancel, .project-submit, .project-cancel {
+    width: 6em;
+    height: 2em;
+    padding: 5px;
+    color: var(--primary-color-orange);
+    background-color: white;
+    border: 1px solid var(--primary-color-orange);;
+    font-size: 1.5em;
+    align-self: center;
+}
+.submit:hover, .cancel:hover, .project-submit:hover, .project-cancel:hover {
+    color: white;
+    background-color: var(--primary-color-orange);
+}
+/* MODAL - ADD PROJECT */
+.project-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 400px;
+    min-height: 230px;
+    position: absolute;
+    top: 20%;
+    background-color: white;
+    z-index: 2;
+    overflow: hidden;
+}
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+#project-title {
+    height: 2rem;
+    width: 20rem;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid grey;
+    color: grey;
+    font-size: 1.2em;
+}
+.hidden {
+    display: none;
+}
