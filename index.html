@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ToDo</title>
+</head>
+<body>
+  <div class="modal-container">
+    <section class="modal hidden">
+        <div class="modal-header">
+          <div class="modal-header-title">
+            <img src="./images/note-outline.svg" alt="note">
+            <p>ADD TASK</p>
+          </div>
+          <button class="close">X</button>
+        </div>
+        <div class="modal-top-content">
+          <input type="text" name="title" id="title" placeholder="Title: " required maxlength="25">
+          <textarea name="description" id="description" placeholder="Description: " maxlength="50"></textarea>
+        </div>
+          
+        <div class="modal-bottom-content">
+          <div>
+            <label for="dueDate">Due date: </label>
+            <input type="date" name="dueDate" id="dueDate" required>
+          </div>
+          <div class="priority-container">
+            <p>Priority: </p>
+            <div>
+                <input type="radio" id="urgent" name="priority" value="Urgent"/>
+                <label for="urgent">Urgent</label>
+              </div>
+            
+              <div>
+                <input type="radio" id="important" name="priority" value="Important"/>
+                <label for="important">Important</label>
+              </div>
+            
+              <div>
+                <input type="radio" id="canwait" name="priority" value="Can wait"/>
+                <label for="canwait">Can wait</label>
+              </div>
+            </div>
+            <div class="modal-bottom-buttons">
+              <button class="submit" type="submit">Add</button>
+              <button class="cancel">Cancel</button>
+            </div>
+          </div>
+    </section>
+    <section class="project-modal hidden">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <img src="./images/note-outline.svg" alt="note">
+          <p>ADD PROJECT</p>
+        </div>
+        <button class="project-close">X</button>
+      </div>
+      <div class="modal-content">
+        <input type="text" name="project-title" id="project-title" placeholder="Title: " required maxlength="25">
+        <div class="modal-bottom-buttons">
+          <button class="project-submit" type="submit">Add</button>
+          <button class="project-cancel">Cancel</button>
+       </div>
+      </div>
+      
+    </section>
+  </div>
+  
+  <div class="overlay hidden"></div>
+  <script src="main.js"></script>
+</body>
+</html>
